@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { Link } from '@nextui-org/react';
 
-export default function Home() {
+export default function TheHeader() {
   return (
-    <header>
+    <header className="flex justify-between">
       <Link color="success" href="/">
         <span className="text-2xl font-bold xs:text-xl xs:font-semibold">
           Hyun's Portfolio
