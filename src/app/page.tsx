@@ -1,12 +1,7 @@
 import Image from 'next/image';
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Divider,
-} from '@nextui-org/react';
+import { Card, CardBody, Divider } from '@nextui-org/react';
 import Profile from './components/profile';
+import Company from './components/project/company';
 export default function Home() {
   return (
     <div>
@@ -23,6 +18,9 @@ export default function Home() {
         </ul>
         <Divider className="my-6" />
         <Profile />
+        <Divider className="my-6" />
+        <Company />
+        <Divider className="my-6" />
       </main>
     </div>
   );

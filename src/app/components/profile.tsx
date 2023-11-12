@@ -60,8 +60,6 @@ export default function App() {
     fetchData();
   }, []);
 
-  console.log(contactInfo);
-
   return (
     <div>
       {contactInfo.length > 0 ? (
