@@ -1,6 +1,7 @@
 'use client';
 
 import { supabase } from '../supabaseClient';
+import { useState, useEffect } from 'react';
 import {
   Table,
   TableHeader,
@@ -8,52 +9,83 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Link,
 } from '@nextui-org/react';
 
-async function fetchData() {
-  const { data: contact_info, error } = await supabase
-    .from('contact_info')
-    .select('*');
-
-  if (error) {
-    console.error('Error fetching data:', error.message);
+function conditionalContact(
+  contact: string,
+  contactAddress?: string,
+  contactLink?: string
+) {
+  if (contact === 'Email') {
+    return (
+      <TableCell>
+        {contact} : {contactAddress}
+      </TableCell>
+    );
+  } else if (contact === 'Github') {
+    return (
+      <TableCell>
+        {contact} : <Link href={contactLink}>깃헙아이콘예정</Link>
+      </TableCell>
+    );
+  } else if (contact === 'Blog') {
+    return (
+      <TableCell>
+        {contact} : <Link href={contactLink}>티스토리블로그아이콘예정</Link>
+      </TableCell>
+    );
   } else {
-    console.log('Fetched data:', contact_info);
+    return <TableCell>''</TableCell>;
   }
 }
 
 export default function App() {
-  fetchData();
+  const [contactInfo, setContactInfo] = useState<
+    Database['public']['Tables']['contact_info']['Row'][]
+  >([]);
+  useEffect(() => {
+    async function fetchData() {
+      const { data: contact_info, error } = await supabase
+        .from('contact_info')
+        .select('*');
+
+      if (error) {
+        console.error('Error fetching data:', error.message);
+      } else {
+        setContactInfo(contact_info);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  console.log(contactInfo);
 
   return (
-    <Table aria-label="Example static collection table">
-      <TableHeader>
-        <TableColumn>NAME</TableColumn>
-        <TableColumn>ROLE</TableColumn>
-        <TableColumn>STATUS</TableColumn>
-      </TableHeader>
-      <TableBody>
-        <TableRow key="1">
-          <TableCell>Tony Reichert</TableCell>
-          <TableCell>CEO</TableCell>
-          <TableCell>Active</TableCell>
-        </TableRow>
-        <TableRow key="2">
-          <TableCell>Zoey Lang</TableCell>
-          <TableCell>Technical Lead</TableCell>
-          <TableCell>Paused</TableCell>
-        </TableRow>
-        <TableRow key="3">
-          <TableCell>Jane Fisher</TableCell>
-          <TableCell>Senior Developer</TableCell>
-          <TableCell>Active</TableCell>
-        </TableRow>
-        <TableRow key="4">
-          <TableCell>William Howard</TableCell>
-          <TableCell>Community Manager</TableCell>
-          <TableCell>Vacation</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+    <div>
+      {contactInfo.length > 0 ? (
+        <Table aria-label="Example table with dynamic content">
+          <TableHeader>
+            <TableColumn>프로필</TableColumn>
+            <TableColumn>contact</TableColumn>
+          </TableHeader>
+          <TableBody>
+            {contactInfo.map((row) => (
+              <TableRow key={row.id}>
+                <TableCell>{row.profile}</TableCell>
+                {conditionalContact(
+                  row.contact,
+                  row.contact_address,
+                  row.contact_link
+                )}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : (
+        <p>로딩 중</p>
+      )}
+    </div>
   );
 }
