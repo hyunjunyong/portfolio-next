@@ -17,6 +17,13 @@ const config: Config = {
       },
     },
   },
+  safelist: [
+    'bg-[#34d399]',
+    'bg-[#38bdf8]',
+    'bg-[#a78bfa]',
+    'bg-[#fbbf24]',
+    'bg-[#fb7185]',
+  ],
   darkMode: 'class',
   plugins: [nextui()],
 };

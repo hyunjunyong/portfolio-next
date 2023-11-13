@@ -23,8 +23,6 @@ export default function Company() {
     fetchData();
   }, []);
 
-  console.log(projectList);
-
   return (
     <div className="grid gap-2 grid-cols-2 sm:grid-cols-4">
       {projectList.map((item) => (
@@ -36,7 +34,7 @@ export default function Company() {
               width="100%"
               alt={item.title}
               className=" object-cover h-[200px]"
-              src={`/img` + item.imageUrl}
+              src={`/img${item.imageUrl}`}
             />
           </CardBody>
           <CardFooter className="text-small justify-between">

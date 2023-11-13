@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { Card, CardBody, Divider } from '@nextui-org/react';
 import Profile from './components/profile';
 import Company from './components/project/company';
+import Personal from './components/project/personal';
+import Skill from './components/skill';
 export default function Home() {
   return (
     <div>
@@ -20,6 +22,12 @@ export default function Home() {
         <Profile />
         <Divider className="my-6" />
         <Company />
+        <Divider className="my-6" />
+        <Personal />
+        <Divider className="my-6" />
+        <div className="flex items-center justify-center">
+          <Skill />
+        </div>
         <Divider className="my-6" />
       </main>
     </div>
