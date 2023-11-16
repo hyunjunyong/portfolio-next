@@ -1,6 +1,6 @@
 # 포트폴리오 (next.js 14버전)
 
-## URL : https://portfolio-hyunjunyong.vercel.app/
+## URL : https://hyunjunyong.github.io/portfolio-next/
 nuxt로만들어진 해당 포트폴리오를 next로도 제작중입니다.
 
 ## URL : 
