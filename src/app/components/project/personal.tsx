@@ -1,6 +1,3 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import { Card, CardBody, CardHeader, Image, Link } from '@nextui-org/react';
 import SubTitle from '../layout/subTitle';
 
@@ -84,7 +81,7 @@ export default function Personal() {
             <Image
               src="/img/webtoon.png"
               alt="/img/webtoon.png"
-              width="400"
+              width={400}
               height="200"
             />
             {/*             format="webp"
@@ -134,7 +131,7 @@ export default function Personal() {
             <Image
               src="/img/middle-location.png"
               alt="/img/middle-location.png"
-              width="400"
+              width={400}
               height="200"
             />
             {/*             format="webp"
@@ -187,7 +184,7 @@ export default function Personal() {
             <Image
               src="/img/jeju.png"
               alt="/img/jeju.png"
-              width="400"
+              width={400}
               height="200"
             />
             {/*             format="webp"

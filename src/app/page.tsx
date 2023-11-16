@@ -25,9 +25,7 @@ export default function Home() {
         <Divider className="my-6" />
         <Personal />
         <Divider className="my-6" />
-        <div className="flex items-center justify-center">
-          <Skill />
-        </div>
+        <Skill />
         <Divider className="my-6" />
       </main>
     </div>

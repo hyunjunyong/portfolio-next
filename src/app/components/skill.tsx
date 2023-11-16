@@ -2,7 +2,7 @@
 
 import { supabase } from '@/app/supabaseClient';
 import { useState, useEffect } from 'react';
-import { Progress } from '@nextui-org/react';
+import { Progress, Image } from '@nextui-org/react';
 export default function Company() {
   const [skillInfo, setSkillInfo] = useState<
     Database['public']['Tables']['skillInfo']['Row'][]
@@ -31,19 +31,29 @@ export default function Company() {
   console.log(skillInfo);
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-md">
-      {skillInfo.map((item) => (
-        <div>
-          <Progress
-            key={item.id}
-            isStriped
-            classNames={{ indicator: bgColor(item.color) }}
-            label={item.name}
-            value={item.percentage}
-            showValueLabel={true}
-          />
+    <div className="mt-10">
+      <div className="flex items-center justify-center gap-5">
+        <h3 className="text-center underline underline-offset-1 font-bold text-4xl text-cyan-500 xs:text-2xl xs:font-semibold">
+          Skill
+        </h3>
+        <Image src="/img/vue.gif" alt="/img/vue.gif" width="250" height="200" />
+      </div>
+      <div className="flex items-center justify-center">
+        <div className="flex flex-col gap-6 w-full max-w-md">
+          {skillInfo.map((item) => (
+            <div>
+              <Progress
+                key={item.id}
+                isStriped
+                classNames={{ indicator: bgColor(item.color) }}
+                label={item.name}
+                value={item.percentage}
+                showValueLabel={true}
+              />
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }
